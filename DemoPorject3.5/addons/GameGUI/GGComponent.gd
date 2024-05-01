@@ -351,8 +351,8 @@ func _get_largest_child_size()->Vector2:
 		var child = get_child(i)
 		if not (child is Control) or not child.visible: continue
 		if child is Control:  # includes GGComponent
-			max_w = max( max_w, child.size.x )
-			max_h = max( max_h, child.size.y )
+			max_w = max( max_w, child.rect_size.x )
+			max_h = max( max_h, child.rect_size.y )
 	return Vector2(max_w,max_h)
 
 func _get_sum_of_child_sizes()->Vector2:
@@ -638,7 +638,7 @@ func _update_safe_area():
 		var safe_area = Rect2( Vector2(0,0), display_size )
 		
 		if OS.window_fullscreen:
-			safe_area = OS.get_window_size()
+			safe_area = Rect2(Vector2.ZERO, OS.get_window_size())
 
 		#match DisplayServer.window_get_mode():
 		#	DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN, \
