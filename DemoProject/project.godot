@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="DemoProject"
+run/main_scene="res://DemoScene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/dpi/allow_hidpi=false
 
 [editor_plugins]
 
