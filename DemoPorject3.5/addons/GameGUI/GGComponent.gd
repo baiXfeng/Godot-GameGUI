@@ -1,4 +1,4 @@
-@tool
+tool
 
 ## General-purpose layout box and base class to other GameGUI layout components. Children are
 ## stacked in layers.
@@ -32,8 +32,7 @@ signal end_layout
 #-------------------------------------------------------------------------------
 
 ## The possible horizontal and vertical sizing modes for a GameGUI component.
-enum ScalingMode
-{
+enum ScalingMode {
 	EXPAND_TO_FILL, ## Fill all available space along this dimension.
 	ASPECT_FIT,     ## Dynamically adjusts size to maintain aspect ratio [member layout_size].x:[member layout_size].y, just small enough to entirely fit available space.
 	ASPECT_FILL,    ## Dynamically adjusts size to maintain aspect ratio [member layout_size].x:[member layout_size].y, just large enough to entirely fill available space.
@@ -44,16 +43,14 @@ enum ScalingMode
 }
 
 ## The text sizing mode for [GGLabel], [GGRichTextLabel], and [GGButton].
-enum TextSizeMode
-{
+enum TextSizeMode {
 	DEFAULT,    ## Text size is whatever size you assign in the editor.
 	SCALE,      ## Text scales with the size of a reference node.
 	PARAMETER   ## Text size is set to the value of one of the defined [member parameters].
 }
 
 ## The texture fill mode used by [method fill_texture].
-enum FillMode
-{
+enum FillMode {
 	STRETCH,  # Stretch or compress each patch to cover the available space.
 	TILE,     # Repeatedly tile each patch at its original pixel size to cover the available space.
 	TILE_FIT  # Tile each patche, stretching slightly as necessary to ensure a whole number of tiles fit in the available space.
@@ -64,84 +61,92 @@ enum FillMode
 # PROPERTIES
 #-------------------------------------------------------------------------------
 
-@export_group("Component Layout")
+#export_group("Component Layout")
 
 ## The horizontal scaling mode for this node.
-@export var horizontal_mode := GGComponent.ScalingMode.EXPAND_TO_FILL:
-	set(value):
-		if horizontal_mode == value: return
-		horizontal_mode = value
-		if value in [GGComponent.ScalingMode.ASPECT_FIT,GGComponent.ScalingMode.ASPECT_FILL]:
-			if vertical_mode in [GGComponent.ScalingMode.PROPORTIONAL,GGComponent.ScalingMode.FIXED,GGComponent.ScalingMode.PARAMETER]: vertical_mode = value
-			if layout_size.x  < 0.0001: layout_size.x = 1
-			if layout_size.y  < 0.0001: layout_size.y = 1
-		elif vertical_mode in [GGComponent.ScalingMode.ASPECT_FIT,GGComponent.ScalingMode.ASPECT_FILL]:
-			if not (value in [GGComponent.ScalingMode.EXPAND_TO_FILL,GGComponent.ScalingMode.SHRINK_TO_FIT,GGComponent.ScalingMode.PARAMETER]): vertical_mode = value
-		if value == GGComponent.ScalingMode.PROPORTIONAL:
-			if layout_size.x < 0.0001 or layout_size.x > 1: layout_size.x = 1
-			if layout_size.y < 0.0001 or layout_size.x > 1: layout_size.y = 1
-		request_layout()
+export(int, "EXPAND_TO_FILL", "ASPECT_FIT", "ASPECT_FILL", "PROPORTIONAL", "SHRINK_TO_FIT", "FIXED", "PARAMETER") var horizontal_mode := ScalingMode.EXPAND_TO_FILL \
+	setget _set_horizontal_mode
+	
+func _set_horizontal_mode(value):
+	if horizontal_mode == value: return
+	horizontal_mode = value
+	if value in [ScalingMode.ASPECT_FIT,ScalingMode.ASPECT_FILL]:
+		if vertical_mode in [ScalingMode.PROPORTIONAL,ScalingMode.FIXED,ScalingMode.PARAMETER]: vertical_mode = value
+		if layout_size.x  < 0.0001: layout_size.x = 1
+		if layout_size.y  < 0.0001: layout_size.y = 1
+	elif vertical_mode in [ScalingMode.ASPECT_FIT,ScalingMode.ASPECT_FILL]:
+		if not (value in [ScalingMode.EXPAND_TO_FILL,ScalingMode.SHRINK_TO_FIT,ScalingMode.PARAMETER]): vertical_mode = value
+	if value == ScalingMode.PROPORTIONAL:
+		if layout_size.x < 0.0001 or layout_size.x > 1: layout_size.x = 1
+		if layout_size.y < 0.0001 or layout_size.x > 1: layout_size.y = 1
+	request_layout()
 
 ## The vertical scaling mode for this node.
-@export var vertical_mode := GGComponent.ScalingMode.EXPAND_TO_FILL:
-	set(value):
-		if vertical_mode == value: return
-		vertical_mode = value
-		if value in [GGComponent.ScalingMode.ASPECT_FIT,GGComponent.ScalingMode.ASPECT_FILL]:
-			if horizontal_mode in [GGComponent.ScalingMode.PROPORTIONAL,GGComponent.ScalingMode.FIXED,GGComponent.ScalingMode.PARAMETER]: horizontal_mode = value
-			if abs(layout_size.x)  < 0.0001: layout_size.x = 1
-			if abs(layout_size.y)  < 0.0001: layout_size.y = 1
-		elif horizontal_mode in [GGComponent.ScalingMode.ASPECT_FIT,GGComponent.ScalingMode.ASPECT_FILL]:
-			if not (value in [GGComponent.ScalingMode.EXPAND_TO_FILL,GGComponent.ScalingMode.SHRINK_TO_FIT,GGComponent.ScalingMode.PARAMETER]): horizontal_mode = value
-		if value == GGComponent.ScalingMode.PROPORTIONAL:
-			if layout_size.x < 0.0001 or layout_size.x > 1: layout_size.x = 1
-			if layout_size.y < 0.0001 or layout_size.x > 1: layout_size.y = 1
-		request_layout()
+export(int, "EXPAND_TO_FILL", "ASPECT_FIT", "ASPECT_FILL", "PROPORTIONAL", "SHRINK_TO_FIT", "FIXED", "PARAMETER") var vertical_mode := ScalingMode.EXPAND_TO_FILL \
+	setget _set_vertical_mode
+	
+func _set_vertical_mode(value):
+	if vertical_mode == value: return
+	vertical_mode = value
+	if value in [ScalingMode.ASPECT_FIT,ScalingMode.ASPECT_FILL]:
+		if horizontal_mode in [ScalingMode.PROPORTIONAL,ScalingMode.FIXED,ScalingMode.PARAMETER]: horizontal_mode = value
+		if abs(layout_size.x)  < 0.0001: layout_size.x = 1
+		if abs(layout_size.y)  < 0.0001: layout_size.y = 1
+	elif horizontal_mode in [ScalingMode.ASPECT_FIT,ScalingMode.ASPECT_FILL]:
+		if not (value in [ScalingMode.EXPAND_TO_FILL,ScalingMode.SHRINK_TO_FIT,ScalingMode.PARAMETER]): horizontal_mode = value
+	if value == ScalingMode.PROPORTIONAL:
+		if layout_size.x < 0.0001 or layout_size.x > 1: layout_size.x = 1
+		if layout_size.y < 0.0001 or layout_size.x > 1: layout_size.y = 1
+	request_layout()
 
 ## Pixel values for scaling mode [b]Fixed[/b], fractional values for [b]Proportional[/b], and aspect ratio values for [b]Aspect Fit[/b] and [b]Aspect Fill[/b].
-@export var layout_size := Vector2(0,0):
-	set(value):
-		if layout_size == value: return
-		# The initial Vector2(0,0) may come in as e.g. 0.00000000000208 for x and y
-		if abs(value.x) < 0.00001: value.x = 0
-		if abs(value.y) < 0.00001: value.y = 0
-		layout_size = value
-		request_layout()
+export(Vector2) var layout_size := Vector2(0,0) setget _set_layout_size
+	
+func _set_layout_size(value):
+	if layout_size == value: return
+	# The initial Vector2(0,0) may come in as e.g. 0.00000000000208 for x and y
+	if abs(value.x) < 0.00001: value.x = 0
+	if abs(value.y) < 0.00001: value.y = 0
+	layout_size = value
+	request_layout()
 
 ## An optional node to use as a size reference for [b]Proportional[/b] scaling
 ## mode. The reference node must be in a subtree higher in the scene tree than
 ## this node. Often the size reference is an invisible root-level square-aspect
 ## component; this allows same-size horizontal and vertical proportional spacers.
-@export var reference_node:Control = null :
-	set(value):
-		if reference_node != value:
-			reference_node = value
-			request_layout()
+export(NodePath) var reference_node = null setget _set_reference_node
+func _set_reference_node(value):
+	if reference_node != value:
+		reference_node = value
+		request_layout()
 
 ## The name of the parameter to use for the [b]Parameter[/b] horizontal scaling mode.
-@export var width_parameter := "" :
-	set(value):
-		if width_parameter == value: return
-		width_parameter = value
-		if value != "" and has_parameter(value):
-			request_layout()
+export(String) var width_parameter := "" setget _set_width_parameter
+	
+func _set_width_parameter(value):
+	if width_parameter == value: return
+	width_parameter = value
+	if value != "" and has_parameter(value):
+		request_layout()
 
 ## The name of the parameter to use for the [b]Parameter[/b] vertical_mode scaling mode.
-@export var height_parameter := "" :
-	set(value):
-		if height_parameter == value: return
-		height_parameter = value
-		if value != "" and has_parameter(value):
-			request_layout()
+export(String) var height_parameter := "" setget _set_height_parameter
+	
+func _set_height_parameter(value):
+	if height_parameter == value: return
+	height_parameter = value
+	if value != "" and has_parameter(value):
+		request_layout()
 
 ## Parameter definitions for nodes that use scaling mode PARAMETER. Parameters are stored
 ## the root of a GGComponent subtree. Use [method get_parameter], [method has_parameter], and
 ## [method set_parameter] to access parameters from any subtree nodes.
-@export var parameters := {} :
-	set(value):
-		if parameters == value: return
-		parameters = value
-		request_layout()
+export(Dictionary) var parameters := {} setget _set_parameters
+	
+func _set_parameters(value):
+	if parameters == value: return
+	parameters = value
+	request_layout()
 
 # A top-level GGComponent is one that has no GGComponent parent.
 # It oversees the layout of its descendent nodes.
@@ -154,8 +159,8 @@ var _layout_stage := 0 # top-level component use. 0=layout finished, 1=layout re
 
 ## Utility method that draws a texture with any combination of horizontal and vertical fill modes: Stretch, Tile, Tile Fit.
 ## Used primarily by [GGComponent].
-func fill_texture( texture:Texture2D, dest_rect:Rect2, src_rect:Rect2, horizontal_fill_mode:FillMode=FillMode.STRETCH,
-		vertical_fill_mode:FillMode=FillMode.STRETCH, modulate:Color=Color(1,1,1,1) ):
+func fill_texture( texture:Texture, dest_rect:Rect2, src_rect:Rect2, horizontal_fill_mode:int=0,
+		vertical_fill_mode:int=0, modulate:Color=Color(1,1,1,1) ):
 	if dest_rect.size.x <= 0 or dest_rect.size.y <= 0: return
 
 	if horizontal_fill_mode == FillMode.TILE and src_rect.size.x > dest_rect.size.x:
@@ -254,7 +259,7 @@ func fill_texture( texture:Texture2D, dest_rect:Rect2, src_rect:Rect2, horizonta
 ## Returns the specified parameter's value if it exists in the [member parameters]
 ## of this node or a [GGComponent] ancestor. If it doesn't exist, returns
 ## [code]0[/code] or a specified default result.
-func get_parameter( parameter_name:String, default_result:Variant=0 )->Variant:
+func get_parameter( parameter_name:String, default_result=0 ):
 	var top = get_top_level_component()
 	if top and top.parameters.has(parameter_name):
 		return top.parameters[parameter_name]
@@ -278,7 +283,7 @@ func has_parameter( parameter_name:String )->bool:
 		return false
 
 ## Sets the named parameter's value in the top-level root of this subtree.
-func set_parameter( parameter_name:String, value:Variant ):
+func set_parameter( parameter_name:String, value ):
 	var top = get_top_level_component()
 	if top: top.parameters[parameter_name] = value
 
@@ -318,11 +323,11 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 
 func _resolve_shrink_to_fit_height( _available_size:Vector2 ):
 	# Override in extended classes.
-	size.y = _get_largest_child_size().y
+	rect_size.y = _get_largest_child_size().y
 
 func _resolve_shrink_to_fit_width( _available_size:Vector2 ):
 	# Override in extended classes.
-	size.x = _get_largest_child_size().x
+	rect_size.x = _get_largest_child_size().x
 
 func _with_margins( rect:Rect2 )->Rect2:
 	return rect
@@ -353,7 +358,7 @@ func _get_sum_of_child_sizes()->Vector2:
 
 func _perform_layout( available_bounds:Rect2 ):
 	_place_component( self, available_bounds )
-	var bounds = _with_margins( Rect2(Vector2(0,0),size) )
+	var bounds = _with_margins( Rect2(Vector2(0,0),rect_size) )
 	_perform_child_layout( bounds )
 
 func _place_component( component:Control, available_bounds:Rect2 ):
@@ -363,14 +368,14 @@ func _rect_position_within_parent_bounds( component:Control, rect_size:Vector2, 
 	var pos = available_bounds.position
 
 	if component is Control:  # includes GGComponent
-		if component.size_flags_horizontal & (SizeFlags.SIZE_SHRINK_CENTER | SizeFlags.SIZE_FILL):
+		if component.size_flags_horizontal & (Control.SizeFlags.SIZE_SHRINK_CENTER | Control.SizeFlags.SIZE_FILL):
 			pos.x += floor( (available_bounds.size.x - rect_size.x) / 2 )
-		elif component.size_flags_horizontal & SizeFlags.SIZE_SHRINK_END:
+		elif component.size_flags_horizontal & Control.SizeFlags.SIZE_SHRINK_END:
 			pos.x += available_bounds.size.x - rect_size.x
 
-		if component.size_flags_vertical & (SizeFlags.SIZE_SHRINK_CENTER | SizeFlags.SIZE_FILL):
+		if component.size_flags_vertical & (Control.SizeFlags.SIZE_SHRINK_CENTER | Control.SizeFlags.SIZE_FILL):
 			pos.y += floor( (available_bounds.size.y - rect_size.y) / 2 )
-		elif component.size_flags_vertical & SizeFlags.SIZE_SHRINK_END:
+		elif component.size_flags_vertical & Control.SizeFlags.SIZE_SHRINK_END:
 			pos.y += available_bounds.size.y - rect_size.y
 
 	return pos
@@ -417,8 +422,9 @@ func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 		ScalingMode.PARAMETER:
 			component_size.x = get_parameter( component.width_parameter, component.layout_size.x )
 		ScalingMode.PROPORTIONAL:
-			if reference_node:
-				component_size.x = int(component.layout_size.x * reference_node.size.x)
+			var ref_node: Control = get_node(reference_node) if reference_node != null else null
+			if ref_node:
+				component_size.x = int(component.layout_size.x * ref_node.rect_size.x)
 			else:
 				component_size.x = int(component.layout_size.x * available_size.x)
 
@@ -443,8 +449,9 @@ func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 		ScalingMode.PARAMETER:
 			component_size.y = get_parameter( component.height_parameter, component.layout_size.y )
 		ScalingMode.PROPORTIONAL:
-			if reference_node:
-				component_size.y = int(component.layout_size.y * reference_node.size.y)
+			var ref_node: Control = get_node(reference_node) if reference_node != null else null
+			if ref_node:
+				component_size.y = int(component.layout_size.y * ref_node.rect_size.y)
 			else:
 				component_size.y = int(component.layout_size.y * available_size.y)
 
@@ -497,13 +504,15 @@ func _update_layout():
 
 	_update_safe_area()
 
-	begin_layout.emit()
+	#begin_layout.emit()
+	emit_signal("begin_layout")
 
 	_update_size()
-	_resolve_size( size )
-	_perform_layout( _with_margins(Rect2(Vector2(0,0),size)) )
+	_resolve_size( rect_size )
+	_perform_layout( _with_margins(Rect2(Vector2(0,0),rect_size)) )
 
-	end_layout.emit()
+	#end_layout.emit()
+	emit_signal("end_layout")
 	_layout_stage = 0
 
 func _update_size():
@@ -519,49 +528,82 @@ func _update_size():
 #-------------------------------------------------------------------------------
 # INTERNAL NODE API
 #-------------------------------------------------------------------------------
-func _disconnect( sig:Signal, callback:Callable ):
-	if sig.is_connected(callback):
-		sig.disconnect( callback )
-
+	
+func _signal_connect(owner: Object, owner_signal: String, function: String):
+	if owner.is_connected(owner_signal, self, function):
+		return
+	owner.connect(owner_signal, self, function)
+	
+func _signal_disconnect(owner: Object, owner_signal: String, function: String):
+	if not owner.is_connected(owner_signal, self, function):
+		return
+	owner.disconnect(owner_signal, self, function)
+	
+signal child_order_changed
+	
+func move_child(child_node: Node, to_position: int):
+	.move_child(child_node, to_position)
+	emit_signal("child_order_changed")
+	
 func _enter_tree():
 	_is_top_level = not (get_parent() is GGComponent)
 	if _is_top_level:
-		resized.connect( request_layout )
-		sort_children.connect( _on_sort_children )
+		#resized.connect( request_layout )
+		_signal_connect(self, "resized", "request_layout")
+		#sort_children.connect( _on_sort_children )
+		_signal_connect(self, "sort_children", "_on_sort_children")
 		_update_safe_area()
 
-	child_entered_tree.connect( _on_child_entered_tree )
-	child_exiting_tree.connect( _on_child_exiting_tree )
-	child_order_changed.connect( request_layout )
+	#child_entered_tree.connect( _on_child_entered_tree )
+	_signal_connect(self, "child_entered_tree", "_on_child_entered_tree")
+	#child_exiting_tree.connect( _on_child_exiting_tree )
+	_signal_connect(self, "child_exiting_tree", "_on_child_exiting_tree")
+	#child_order_changed.connect( request_layout )
+	_signal_connect(self, "child_order_changed", "request_layout")
 
 	request_layout()
 
 func _exit_tree():
 	if _is_top_level:
-		_disconnect( resized, request_layout )
-		_disconnect( sort_children, _on_sort_children )
+		#_disconnect( resized, request_layout )
+		_signal_disconnect(self, "resized", "request_layout")
+		#_disconnect( sort_children, _on_sort_children )
+		_signal_disconnect(self, "sort_children", "_on_sort_children")
 
-	_disconnect( child_entered_tree, _on_child_entered_tree )
-	_disconnect( child_exiting_tree, _on_child_exiting_tree )
-	_disconnect( child_order_changed, request_layout )
+	#_disconnect( child_entered_tree, _on_child_entered_tree )
+	_signal_disconnect(self, "child_entered_tree", "_on_child_entered_tree")
+	#_disconnect( child_exiting_tree, _on_child_exiting_tree )
+	_signal_disconnect(self, "child_exiting_tree", "_on_child_exiting_tree")
+	#_disconnect( child_order_changed, request_layout )
+	_signal_disconnect(self, "child_order_changed", "request_layout")
 
 	request_layout()
 
 func _on_child_entered_tree( child:Node ):
-	if child is Control: child.visibility_changed.connect( request_layout )
+	if child is Control:
+		#child.visibility_changed.connect( request_layout )
+		_signal_connect(child, "visibility_changed", "request_layout")
 	if Engine.is_editor_hint() and child is Control:
-		child.minimum_size_changed.connect( request_layout )
-		child.resized.connect( request_layout )
-		child.size_flags_changed.connect( request_layout )
+		#child.minimum_size_changed.connect( request_layout )
+		_signal_connect(child, "minimum_size_changed", "request_layout")
+		#child.resized.connect( request_layout )
+		_signal_connect(child, "resized", "request_layout")
+		#child.size_flags_changed.connect( request_layout )
+		_signal_connect(child, "size_flags_changed", "request_layout")
 
 	request_layout()
 
 func _on_child_exiting_tree( child:Node ):
-	if child is Control: _disconnect( child.visibility_changed, request_layout )
+	if child is Control:
+		#_disconnect( child.visibility_changed, request_layout )
+		_signal_disconnect(child, "visibility_changed", "request_layout")
 	if Engine.is_editor_hint() and child is Control:
-		_disconnect( child.minimum_size_changed, request_layout )
-		_disconnect( child.resized, request_layout )
-		_disconnect( child.size_flags_changed, request_layout )
+		#_disconnect( child.minimum_size_changed, request_layout )
+		_signal_disconnect(child, "minimum_size_changed", "request_layout")
+		#_disconnect( child.resized, request_layout )
+		_signal_disconnect(child, "resized", "request_layout")
+		#_disconnect( child.size_flags_changed, request_layout )
+		_signal_disconnect(child, "size_flags_changed", "request_layout")
 
 	request_layout()
 
@@ -576,11 +618,14 @@ func _update_safe_area():
 	if viewport:
 		var display_size = viewport.get_visible_rect().size
 		var safe_area = Rect2( Vector2(0,0), display_size )
+		
+		if OS.window_fullscreen:
+			safe_area = OS.get_window_size()
 
-		match DisplayServer.window_get_mode():
-			DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN, \
-			DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-				safe_area = DisplayServer.get_display_safe_area()
+		#match DisplayServer.window_get_mode():
+		#	DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN, \
+		#	DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		#		safe_area = DisplayServer.get_display_safe_area()
 
 		set_parameter( "safe_area_left_margin", safe_area.position.x )
 		set_parameter( "safe_area_top_margin", safe_area.position.y )
