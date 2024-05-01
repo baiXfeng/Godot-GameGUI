@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/GameGUI/GGComponent.gd" type="Script" id=1]
+[ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
+
+[node name="Control" type="Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+layout_size = Vector2( 1, 1 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+initial_window_size = Vector2( 1024, 600 )
+
+[node name="GGComponent" type="Container" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+layout_size = Vector2( 1, 1 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GGComponent"]
+margin_right = 1024.0
+margin_bottom = 600.0
+border_width = 6.0
+editor_only = false

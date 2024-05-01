@@ -13,15 +13,36 @@ _global_script_classes=[ {
 "class": "GGComponent",
 "language": "GDScript",
 "path": "res://addons/GameGUI/GGComponent.gd"
+}, {
+"base": "GGComponent",
+"class": "GGFiller",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGFiller.gd"
+}, {
+"base": "GGComponent",
+"class": "GGInitialWindowSize",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGInitialWindowSize.gd"
 } ]
 _global_script_class_icons={
-"GGComponent": ""
+"GGComponent": "",
+"GGFiller": "",
+"GGInitialWindowSize": ""
 }
 
 [application]
 
 config/name="DemoPorject3.5"
+run/main_scene="res://Control.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/GameGUI/plugin.cfg" )
 
 [gui]
 
