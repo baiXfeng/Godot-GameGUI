@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Container",
+"class": "GGComponent",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGComponent.gd"
+} ]
+_global_script_class_icons={
+"GGComponent": ""
+}
+
 [application]
 
 config/name="DemoPorject3.5"
