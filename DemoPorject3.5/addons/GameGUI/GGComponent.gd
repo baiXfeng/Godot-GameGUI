@@ -56,6 +56,13 @@ enum FillMode {
 	TILE_FIT  # Tile each patche, stretching slightly as necessary to ensure a whole number of tiles fit in the available space.
 }
 
+enum SizeFlags {
+	SIZE_FILL = 1,
+	SIZE_EXPAND = 2,
+	SIZE_EXPAND_FILL = 3,
+	SIZE_SHRINK_CENTER = 4,
+	SIZE_SHRINK_END
+}
 
 #-------------------------------------------------------------------------------
 # PROPERTIES
@@ -269,7 +276,7 @@ func get_parameter( parameter_name:String, default_result=0 ):
 ## Returns the root of this GGComponent subtree.
 func get_top_level_component()->GGComponent:
 	var cur = self
-	while cur and (not cur is GGComponent or not cur._is_top_level):
+	while cur and (not is_type(cur, "GGComponent") or not cur._is_top_level):
 		cur = cur.get_parent()
 	return cur
 
@@ -362,20 +369,20 @@ func _perform_layout( available_bounds:Rect2 ):
 	_perform_child_layout( bounds )
 
 func _place_component( component:Control, available_bounds:Rect2 ):
-	component.position = _rect_position_within_parent_bounds( component, component.size, available_bounds )
-
+	component.rect_position = _rect_position_within_parent_bounds( component, component.rect_size, available_bounds )
+	
 func _rect_position_within_parent_bounds( component:Control, rect_size:Vector2, available_bounds:Rect2 )->Vector2:
 	var pos = available_bounds.position
 
 	if component is Control:  # includes GGComponent
-		if component.size_flags_horizontal & (Control.SizeFlags.SIZE_SHRINK_CENTER | Control.SizeFlags.SIZE_FILL):
+		if component.size_flags_horizontal & (SizeFlags.SIZE_SHRINK_CENTER | SizeFlags.SIZE_FILL):
 			pos.x += floor( (available_bounds.size.x - rect_size.x) / 2 )
-		elif component.size_flags_horizontal & Control.SizeFlags.SIZE_SHRINK_END:
+		elif component.size_flags_horizontal & SizeFlags.SIZE_SHRINK_END:
 			pos.x += available_bounds.size.x - rect_size.x
 
-		if component.size_flags_vertical & (Control.SizeFlags.SIZE_SHRINK_CENTER | Control.SizeFlags.SIZE_FILL):
+		if component.size_flags_vertical & (SizeFlags.SIZE_SHRINK_CENTER | SizeFlags.SIZE_FILL):
 			pos.y += floor( (available_bounds.size.y - rect_size.y) / 2 )
-		elif component.size_flags_vertical & Control.SizeFlags.SIZE_SHRINK_END:
+		elif component.size_flags_vertical & SizeFlags.SIZE_SHRINK_END:
 			pos.y += available_bounds.size.y - rect_size.y
 
 	return pos
@@ -383,7 +390,7 @@ func _rect_position_within_parent_bounds( component:Control, rect_size:Vector2, 
 func _resolve_child_size( child:Node, available_size:Vector2, limited:bool=false ):
 	if not child.visible or not child is Control: return
 
-	if child is GGComponent:
+	if is_type(child, "GGComponent"):
 		child._resolve_size( available_size, limited )
 	else:
 		_resolve_component_size( child, available_size )
@@ -392,7 +399,7 @@ func _resolve_child_size( child:Node, available_size:Vector2, limited:bool=false
 func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 	var component_size := available_size
 
-	var is_gg = component is GGComponent
+	var is_gg = is_type(component, "GGComponent")
 
 	if is_gg or component.has_method("_on_resolve_size"):
 		component._on_resolve_size( available_size )
@@ -405,7 +412,8 @@ func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 		ScalingMode.EXPAND_TO_FILL:
 			pass # use available width
 		ScalingMode.SHRINK_TO_FIT:
-			if not component is GGComponent: component_size.x = component.size.x
+			if not is_type(component, "GGComponent"):
+				component_size.x = component.rect_size.x
 		ScalingMode.ASPECT_FIT:
 			if v_mode == ScalingMode.ASPECT_FILL:
 				component_size.x = floor( (available_size.y / component.layout_size.y) * component.layout_size.x )
@@ -432,7 +440,8 @@ func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 		ScalingMode.EXPAND_TO_FILL:
 			pass # use available height
 		ScalingMode.SHRINK_TO_FIT:
-			if not component is GGComponent: component_size.y = component.size.y
+			if not is_type(component, "GGComponent"):
+				component_size.y = component.rect_size.y
 		ScalingMode.ASPECT_FIT:
 			if h_mode == ScalingMode.ASPECT_FILL:
 				component_size.y = floor( (available_size.x / component.layout_size.x) * component.layout_size.y )
@@ -455,35 +464,36 @@ func _resolve_component_size( component:Node, available_size:Vector2 )->Vector2:
 			else:
 				component_size.y = int(component.layout_size.y * available_size.y)
 
-	if not component is GGComponent or not component._is_top_level: component.size = component_size
+	if not is_type(component, "GGComponent") or not component._is_top_level:
+		component.rect_size = component_size
 
 	return component_size
 
 func _perform_component_layout( component:Node, available_bounds:Rect2 ):
-	if component is GGComponent:
+	if is_type(component, "GGComponent"):
 		component._perform_layout(available_bounds)
 
 	elif component is Control:
 		_place_component( component, available_bounds )
 
 func _resolve_shrink_to_fit_size( component:Node, available_size:Vector2 )->Vector2:
-	if not (component is GGComponent or component.has_method("request_layout")): return available_size
+	if not (is_type(component, "GGComponent") or component.has_method("request_layout")): return available_size
 
 	var component_size := available_size
 
 	match component.horizontal_mode:
 		ScalingMode.SHRINK_TO_FIT:
-			if component is GGComponent:
+			if is_type(component, "GGComponent"):
 				_resolve_shrink_to_fit_width( available_size )
 			else:
-				component_size.x = component.size.x
+				component_size.x = component.rect_size.x
 
 	match component.vertical_mode:
 		ScalingMode.SHRINK_TO_FIT:
-			if component is GGComponent:
+			if is_type(component, "GGComponent"):
 				_resolve_shrink_to_fit_height( available_size )
 			else:
-				component_size.y = component.size.y
+				component_size.y = component.rect_size.y
 
 	return component_size
 
@@ -520,7 +530,7 @@ func _update_size():
 
 	for i in range(get_child_count()):
 		var child = get_child(i)
-		if child is GGComponent:
+		if is_type(child, "GGComponent"):
 			child._update_size()
 		elif child.has_method("_on_update_size"):
 			child._on_update_size()
@@ -545,8 +555,16 @@ func move_child(child_node: Node, to_position: int):
 	.move_child(child_node, to_position)
 	emit_signal("child_order_changed")
 	
+static func is_type(c: Node, type: String) -> bool:
+	if c == null or not c.has_method("_get_type"):
+		return false
+	return type == c._get_type()
+	
+func _get_type() -> String:
+	return "GGComponent"
+	
 func _enter_tree():
-	_is_top_level = not (get_parent() is GGComponent)
+	_is_top_level = not (is_type(get_parent(), "GGComponent"))
 	if _is_top_level:
 		#resized.connect( request_layout )
 		_signal_connect(self, "resized", "request_layout")
