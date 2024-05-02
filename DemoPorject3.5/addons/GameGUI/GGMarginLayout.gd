@@ -17,9 +17,10 @@ export(int, "PROPORTIONAL", "FIXED", "PARAMETER") var margin_type := MarginType.
 	
 func _set_margin_type(value):
 	if margin_type == value: return
-
-	if reference_node:
-		var ref_size = reference_node.size
+	
+	var ref_node: Control = _get_reference_node()
+	if ref_node:
+		var ref_size = ref_node.rect_size
 		if value == MarginType.PROPORTIONAL:
 			if margin_type == MarginType.FIXED and ref_size.x and ref_size.y:
 				left_margin /= ref_size.x
@@ -158,7 +159,7 @@ func _resolve_shrink_to_fit_height( available_size:Vector2 ):
 
 	match margin_type:
 		MarginType.PROPORTIONAL:
-			var ref_node: Control = get_node(reference_node) if reference_node != null else null
+			var ref_node: Control = _get_reference_node()
 			if ref_node:
 				rect_size.y += int( top_margin * ref_node.rect_size.y )
 				rect_size.y += int( bottom_margin * ref_node.rect_size.y )
@@ -177,7 +178,7 @@ func _resolve_shrink_to_fit_width( available_size:Vector2 ):
 
 	match margin_type:
 		MarginType.PROPORTIONAL:
-			var ref_node: Control = get_node(reference_node) if reference_node != null else null
+			var ref_node: Control = _get_reference_node()
 			if ref_node:
 				rect_size.x += int( left_margin * ref_node.rect_size.x )
 				rect_size.x += int( right_margin * ref_node.rect_size.x )
@@ -194,11 +195,12 @@ func _resolve_shrink_to_fit_width( available_size:Vector2 ):
 func _with_margins( rect:Rect2 )->Rect2:
 	match margin_type:
 		MarginType.PROPORTIONAL:
-			if reference_node:
-				var left = int( left_margin * reference_node.size.x )
-				var right = int( right_margin * reference_node.size.x )
-				var top = int( top_margin * reference_node.size.y )
-				var bottom = int( bottom_margin * reference_node.size.y )
+			var ref_node: Control = _get_reference_node()
+			if ref_node:
+				var left = int( left_margin * ref_node.rect_size.x )
+				var right = int( right_margin * ref_node.rect_size.x )
+				var top = int( top_margin * ref_node.rect_size.y )
+				var bottom = int( bottom_margin * ref_node.rect_size.y )
 				var x = rect.position.x + left
 				var y = rect.position.y + top
 				var x2 = rect.position.x + (rect.size.x - right)
