@@ -360,7 +360,7 @@ func _get_sum_of_child_sizes()->Vector2:
 	for i in range(get_child_count()):
 		var child = get_child(i)
 		if not (child is Control) or not child.visible: continue
-		sum += child.size
+		sum += child.rect_size
 	return sum
 
 func _perform_layout( available_bounds:Rect2 ):

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://addons/GameGUI/GGFiller.gd"
 }, {
 "base": "GGComponent",
+"class": "GGHBox",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGHBox.gd"
+}, {
+"base": "GGComponent",
 "class": "GGInitialWindowSize",
 "language": "GDScript",
 "path": "res://addons/GameGUI/GGInitialWindowSize.gd"
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "GGButton": "",
 "GGComponent": "",
 "GGFiller": "",
+"GGHBox": "",
 "GGInitialWindowSize": ""
 }
 

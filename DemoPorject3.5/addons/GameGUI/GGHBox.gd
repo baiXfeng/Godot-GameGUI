@@ -1,24 +1,25 @@
-@tool
+tool
 
 ## A GameGUI layout that arranges its child elements in a horizontal row.
 class_name GGHBox
 extends GGComponent
 
-enum HorizontalContentAlignment
-{
+enum HorizontalContentAlignment {
 	LEFT,    ## Left-align the content.
 	CENTER,  ## Center the content.
 	RIGHT    ## Right-align the content.
 }
 
 ## Specify the horizontal alignment of the content as a whole.
-@export var content_alignment := HorizontalContentAlignment.CENTER :
-	set(value):
+export(int, "LEFT", "CENTER", "RIGHT") var content_alignment := HorizontalContentAlignment.CENTER \
+	setget _set_content_alignment
+	
+func _set_content_alignment(value):
 		content_alignment = value
 		request_layout()
 
-var _min_widths:Array[int] = []
-var _max_widths:Array[int] = []
+var _min_widths: Array = []
+var _max_widths: Array = []
 
 func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 	# Resolve for and collect min and max sizes
@@ -27,7 +28,7 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 		var child = get_child(i)
 		if child is Control and child.visible:
 			_resolve_child_size( child, available_size, true )
-			_max_widths.push_back( int(child.size.x) )
+			_max_widths.push_back( int(child.rect_size.x) )
 		else:
 			_max_widths.push_back( 0 )
 
@@ -36,7 +37,7 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 		var child = get_child(i)
 		if child is Control and child.visible:
 			_resolve_child_size( child, Vector2(0,available_size.y), true )
-			_min_widths.push_back( int(child.size.x) )
+			_min_widths.push_back( int(child.rect_size.x) )
 		else:
 			_min_widths.push_back( 0 )
 
@@ -67,7 +68,7 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 
 			if _min_widths[i] == _max_widths[i]:
 				fixed_width += w
-				_resolve_child_size( child, child.size, limited )  # final resolve
+				_resolve_child_size( child, child.rect_size, limited )  # final resolve
 			else:
 				expand_count += 1
 				total_stretch_ratio += child.size_flags_stretch_ratio
@@ -142,15 +143,15 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 		expand_count -= 1
 
 func _resolve_shrink_to_fit_width( _available_size:Vector2 ):
-	size.x = _get_sum_of_child_sizes().x
+	rect_size.x = _get_sum_of_child_sizes().x
 
 func _resolve_shrink_to_fit_height( _available_size:Vector2 ):
-	size.y = _get_largest_child_size().y
+	rect_size.y = _get_largest_child_size().y
 
 func _perform_layout( available_bounds:Rect2 ):
 	_place_component( self, available_bounds )
 
-	var inner_bounds = _with_margins( Rect2(Vector2(0,0),size) )
+	var inner_bounds = _with_margins( Rect2(Vector2(0,0),rect_size) )
 	var pos = inner_bounds.position
 	var sz = inner_bounds.size
 
@@ -164,5 +165,6 @@ func _perform_layout( available_bounds:Rect2 ):
 		var child = get_child(i)
 		if not (child is Control) or not child.visible: continue
 		if child is Control:
-			_perform_component_layout( child, Rect2(pos,Vector2(child.size.x,sz.y)) )
-			pos += Vector2( child.size.x, 0 )
+			_perform_component_layout( child, Rect2(pos,Vector2(child.rect_size.x,sz.y)) )
+			pos += Vector2( child.rect_size.x, 0 )
+	
