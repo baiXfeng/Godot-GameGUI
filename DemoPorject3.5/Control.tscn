@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/GameGUI/GGComponent.gd" type="Script" id=1]
 [ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
+[ext_resource path="res://addons/GameGUI/GGButton.gd" type="Script" id=3]
 
 [node name="Control" type="Container"]
 anchor_right = 1.0
@@ -33,3 +34,18 @@ margin_right = 1024.0
 margin_bottom = 600.0
 border_width = 6.0
 editor_only = false
+
+[node name="GGButton" type="Button" parent="."]
+margin_left = 457.0
+margin_top = 280.0
+margin_right = 567.0
+margin_bottom = 320.0
+text = "Button"
+script = ExtResource( 3 )
+text_size_mode = 1
+reference_node = NodePath("../GGComponent/ReferenceRect")
+reference_node_height = 600
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true

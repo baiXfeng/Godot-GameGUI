@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "GGButton",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGButton.gd"
+}, {
 "base": "Container",
 "class": "GGComponent",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://addons/GameGUI/GGInitialWindowSize.gd"
 } ]
 _global_script_class_icons={
+"GGButton": "",
 "GGComponent": "",
 "GGFiller": "",
 "GGInitialWindowSize": ""
