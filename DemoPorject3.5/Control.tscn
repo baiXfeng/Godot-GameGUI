@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/GameGUI/GGLimitedSizeComponent.gd" type="Script" id=1]
 [ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
 [ext_resource path="res://addons/GameGUI/GGButton.gd" type="Script" id=3]
 [ext_resource path="res://addons/GameGUI/GGHBox.gd" type="Script" id=4]
 [ext_resource path="res://addons/GameGUI/GGMarginLayout.gd" type="Script" id=5]
+[ext_resource path="res://addons/GameGUI/GGVBox.gd" type="Script" id=6]
 
 [node name="Control" type="Container"]
 anchor_right = 1.0
@@ -42,60 +43,26 @@ parameters = {
 }
 
 [node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox"]
-margin_right = 584.0
+margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 
-[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox"]
-margin_left = 584.0
-margin_top = 280.0
-margin_right = 694.0
-margin_bottom = 320.0
-text = "Button"
-script = ExtResource( 3 )
-text_size_mode = 1
-reference_node = NodePath(".")
-reference_node_height = 600
-horizontal_mode = 5
-vertical_mode = 5
-layout_size = Vector2( 110, 40 )
-is_configured = true
-
-[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox"]
-margin_left = 694.0
-margin_top = 280.0
-margin_right = 804.0
-margin_bottom = 320.0
-text = "Button"
-script = ExtResource( 3 )
-text_size_mode = 1
-reference_node = NodePath(".")
-reference_node_height = 600
-horizontal_mode = 5
-vertical_mode = 5
-layout_size = Vector2( 110, 40 )
-is_configured = true
-
-[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox"]
-margin_left = 804.0
-margin_top = 280.0
-margin_right = 914.0
-margin_bottom = 320.0
-text = "Button"
-script = ExtResource( 3 )
-text_size_mode = 1
-reference_node = NodePath(".")
-reference_node_height = 600
-horizontal_mode = 5
-vertical_mode = 5
-layout_size = Vector2( 110, 40 )
-is_configured = true
-
-[node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox"]
-margin_left = 914.0
-margin_top = 280.0
+[node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]
+margin_left = 512.0
 margin_right = 1024.0
-margin_bottom = 320.0
+margin_bottom = 600.0
+script = ExtResource( 6 )
+
+[node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 4 )
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+margin_left = 36.0
+margin_top = 130.0
+margin_right = 146.0
+margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
@@ -105,3 +72,54 @@ horizontal_mode = 5
 vertical_mode = 5
 layout_size = Vector2( 110, 40 )
 is_configured = true
+
+[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+margin_left = 146.0
+margin_top = 130.0
+margin_right = 256.0
+margin_bottom = 170.0
+text = "Button"
+script = ExtResource( 3 )
+text_size_mode = 1
+reference_node = NodePath(".")
+reference_node_height = 600
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+margin_left = 256.0
+margin_top = 130.0
+margin_right = 366.0
+margin_bottom = 170.0
+text = "Button"
+script = ExtResource( 3 )
+text_size_mode = 1
+reference_node = NodePath(".")
+reference_node_height = 600
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+margin_left = 366.0
+margin_top = 130.0
+margin_right = 476.0
+margin_bottom = 170.0
+text = "Button"
+script = ExtResource( 3 )
+text_size_mode = 1
+reference_node = NodePath(".")
+reference_node_height = 600
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 600.0
+script = ExtResource( 1 )

@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "GGMarginLayout",
 "language": "GDScript",
 "path": "res://addons/GameGUI/GGMarginLayout.gd"
+}, {
+"base": "GGComponent",
+"class": "GGVBox",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGVBox.gd"
 } ]
 _global_script_class_icons={
 "GGButton": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "GGHBox": "",
 "GGInitialWindowSize": "",
 "GGLimitedSizeComponent": "",
-"GGMarginLayout": ""
+"GGMarginLayout": "",
+"GGVBox": ""
 }
 
 [application]
