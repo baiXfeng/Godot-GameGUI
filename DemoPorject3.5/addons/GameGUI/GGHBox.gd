@@ -15,8 +15,8 @@ export(int, "LEFT", "CENTER", "RIGHT") var content_alignment := HorizontalConten
 	setget _set_content_alignment
 	
 func _set_content_alignment(value):
-		content_alignment = value
-		request_layout()
+	content_alignment = value
+	request_layout()
 
 var _min_widths: Array = []
 var _max_widths: Array = []

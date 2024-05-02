@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "GGInitialWindowSize",
 "language": "GDScript",
 "path": "res://addons/GameGUI/GGInitialWindowSize.gd"
+}, {
+"base": "GGComponent",
+"class": "GGMarginLayout",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGMarginLayout.gd"
 } ]
 _global_script_class_icons={
 "GGButton": "",
 "GGComponent": "",
 "GGFiller": "",
 "GGHBox": "",
-"GGInitialWindowSize": ""
+"GGInitialWindowSize": "",
+"GGMarginLayout": ""
 }
 
 [application]

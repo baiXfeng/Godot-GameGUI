@@ -36,8 +36,6 @@ func _ready():
 		OS.set_window_position( pos )
 
 		#set_anchors_and_offsets_preset( LayoutPreset.PRESET_FULL_RECT )
-		
-		printt("set window size", initial_window_size)
 	else:
 		initial_window_size = Vector2(rect_size)
 
