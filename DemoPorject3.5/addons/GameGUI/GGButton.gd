@@ -55,7 +55,7 @@ func _set_reference_node(value):
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null:
+	if reference_node == null or reference_node.is_empty():
 		return null
 	return get_node(reference_node) as Control
 	
