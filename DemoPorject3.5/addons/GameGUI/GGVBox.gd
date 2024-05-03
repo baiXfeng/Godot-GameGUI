@@ -83,11 +83,13 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 		var child = get_child(i)
 		if not child.visible or not child is Control: continue
 		if _min_heights[i] == _max_heights[i]: continue
-
+		
 		var h := 0
-		if expand_count == 1: h = remaining_height
-		else:                 h = int( excess_height * child.size_flags_stretch_ratio / total_stretch_ratio )
-
+		if expand_count == 1:
+			h = remaining_height
+		else:
+			h = int( excess_height * child.size_flags_stretch_ratio / total_stretch_ratio )
+		
 		if h < _min_heights[i]:
 			h = _min_heights[i]
 			remaining_height -= h

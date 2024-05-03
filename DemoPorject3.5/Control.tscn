@@ -171,6 +171,7 @@ margin_top = 300.0
 margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
+layout_size = Vector2( 1, 1 )
 parameters = {
 "safe_area_bottom_margin": 0.0,
 "safe_area_left_margin": 0.0,
@@ -178,9 +179,25 @@ parameters = {
 "safe_area_top_margin": 0.0
 }
 
-[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
+[node name="GGNinePatchRect2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
 margin_right = 512.0
-margin_bottom = 110.0
+margin_bottom = 100.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect2"]
+margin_right = 512.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 0, 80 )
 bbcode_enabled = true
 bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
@@ -190,37 +207,68 @@ script = ExtResource( 9 )
 layout_size = Vector2( 512, 60 )
 is_configured = true
 
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGRichTextLabel"]
+[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect2/GGRichTextLabel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 border_width = 2.0
 editor_only = false
 
-[node name="GGRichTextLabel2" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
-margin_top = 110.0
+[node name="GGNinePatchRect4" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
+margin_top = 100.0
 margin_right = 512.0
-margin_bottom = 220.0
+margin_bottom = 200.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4"]
+margin_right = 512.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 0, 80 )
 bbcode_enabled = true
 bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 scroll_active = false
 script = ExtResource( 9 )
-text_size_mode = 1
-reference_node_height = 600
 layout_size = Vector2( 512, 60 )
 is_configured = true
 
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGRichTextLabel2"]
+[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4/GGRichTextLabel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 border_width = 2.0
 editor_only = false
 
-[node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
-margin_top = 220.0
+[node name="GGNinePatchRect3" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
+margin_top = 200.0
 margin_right = 512.0
 margin_bottom = 300.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect3"]
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 0, 80 )
 text = "HELLO WORLD"
 align = 1
@@ -232,7 +280,8 @@ vertical_mode = 5
 layout_size = Vector2( 0, 14 )
 is_configured = true
 
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGLabel"]
+[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect3/GGLabel"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 border_width = 2.0
