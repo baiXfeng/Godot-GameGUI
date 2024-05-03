@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GameGUI/GGNinePatchRect.gd"
 }, {
+"base": "GGComponent",
+"class": "GGOverlay",
+"language": "GDScript",
+"path": "res://addons/GameGUI/GGOverlay.gd"
+}, {
 "base": "RichTextLabel",
 "class": "GGRichTextLabel",
 "language": "GDScript",
@@ -85,6 +90,7 @@ _global_script_class_icons={
 "GGLimitedSizeComponent": "",
 "GGMarginLayout": "",
 "GGNinePatchRect": "",
+"GGOverlay": "",
 "GGRichTextLabel": "",
 "GGTextureRect": "",
 "GGVBox": ""

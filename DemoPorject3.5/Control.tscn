@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/GameGUI/GGLimitedSizeComponent.gd" type="Script" id=1]
 [ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://addons/GameGUI/GGLabel.gd" type="Script" id=10]
 [ext_resource path="res://Base Bg 1.png" type="Texture" id=11]
 [ext_resource path="res://addons/GameGUI/GGNinePatchRect.gd" type="Script" id=12]
+[ext_resource path="res://addons/GameGUI/GGOverlay.gd" type="Script" id=13]
 
 [node name="Control" type="Container"]
 anchor_right = 1.0
@@ -29,6 +30,41 @@ initial_window_size = Vector2( 1024, 600 )
 margin_right = 1024.0
 margin_bottom = 600.0
 script = ExtResource( 5 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout"]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGTextureRect" type="TextureRect" parent="GGMarginLayout/GGNinePatchRect"]
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 556.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 7 )
+horizontal_mode = 1
+vertical_mode = 1
+layout_size = Vector2( 1680, 840 )
+is_configured = true
 
 [node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout"]
 margin_right = 1024.0
@@ -51,18 +87,36 @@ parameters = {
 margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 min_width = 1
 
 [node name="GGVBox2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent"]
 margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
 margin_right = 512.0
 margin_bottom = 300.0
 script = ExtResource( 4 )
 layout_size = Vector2( 0, 40 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 content_alignment = 0
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
@@ -117,6 +171,12 @@ margin_top = 300.0
 margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 
 [node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
 margin_right = 512.0
@@ -183,17 +243,29 @@ margin_left = 512.0
 margin_right = 1024.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
 margin_right = 512.0
-margin_bottom = 300.0
+margin_bottom = 200.0
 script = ExtResource( 4 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
 margin_left = 36.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 146.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
@@ -206,9 +278,9 @@ is_configured = true
 
 [node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
 margin_left = 146.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 256.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
@@ -221,9 +293,9 @@ is_configured = true
 
 [node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
 margin_left = 256.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 366.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
@@ -236,9 +308,9 @@ is_configured = true
 
 [node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
 margin_left = 366.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 476.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
@@ -250,31 +322,53 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
-margin_top = 300.0
+margin_top = 200.0
 margin_right = 512.0
-margin_bottom = 600.0
+margin_bottom = 400.0
 script = ExtResource( 1 )
 layout_size = Vector2( 1, 1 )
 
 [node name="GGNinePatchRect" type="Container" parent="GGMarginLayout/GGHBox/GGVBox/GGLimitedSizeComponent"]
 margin_right = 512.0
-margin_bottom = 300.0
+margin_bottom = 200.0
 script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 texture = ExtResource( 11 )
 left = 5
 top = 5
 right = 5
 bottom = 5
 
-[node name="GGTextureRect" type="TextureRect" parent="GGMarginLayout/GGHBox/GGVBox/GGLimitedSizeComponent/GGNinePatchRect"]
-margin_top = 22.0
+[node name="GGOverlay" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+margin_top = 400.0
 margin_right = 512.0
-margin_bottom = 278.0
-texture = ExtResource( 8 )
-expand = true
-stretch_mode = 6
-script = ExtResource( 7 )
-horizontal_mode = 1
-vertical_mode = 1
-layout_size = Vector2( 1680, 840 )
-is_configured = true
+margin_bottom = 600.0
+script = ExtResource( 13 )
+layout_size = Vector2( 1, 1 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout/GGHBox/GGVBox/GGOverlay"]
+margin_right = 512.0
+margin_bottom = 200.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
