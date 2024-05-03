@@ -75,7 +75,7 @@ func _draw():
 	var mid_w = max( size.x - (_left+_right), 0 )
 	var mid_h = max( size.y - (_top+_bottom), 0 )
 
-	var pos = position
+	var pos = Vector2.ZERO
 	if _top > 0:
 		if _left > 0:   draw_texture_rect_region( texture, Rect2(pos,Vector2(_left,_top)), _piece_rects[0], modulate )
 		pos += Vector2( _left, 0 )

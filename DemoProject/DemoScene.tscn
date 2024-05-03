@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://addons/GameGUI/GGInitialWindowSize.gd" id="1_vk4tw"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGComponent.gd" id="2_g0xq4"]
-[ext_resource type="Texture2D" uid="uid://bho7el5ufsu4h" path="res://Background.png" id="2_yy4fm"]
+[ext_resource type="Texture2D" uid="uid://dndufxyta07qj" path="res://Background.png" id="2_yy4fm"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGTextureRect.gd" id="3_yjvjq"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGOverlay.gd" id="5_1wg16"]
-[ext_resource type="Texture2D" uid="uid://bebonjfbutevo" path="res://Godot.png" id="6_a1gd3"]
+[ext_resource type="Texture2D" uid="uid://b1s3wbm2eqk5m" path="res://Godot.png" id="6_a1gd3"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGLabel.gd" id="7_7fgfl"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGVBox.gd" id="7_u7o6r"]
 [ext_resource type="Script" path="res://addons/GameGUI/GGFiller.gd" id="8_evd4p"]
@@ -22,6 +22,12 @@ offset_bottom = 600.0
 script = ExtResource("1_vk4tw")
 initial_window_size = Vector2(800, 600)
 layout_size = Vector2(1, 1)
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
 
 [node name="GGComponent - Size Ref" type="Container" parent="."]
 layout_mode = 2
@@ -185,7 +191,7 @@ reference_font_sizes = {
 "mono": 16,
 "normal": 16
 }
-layout_size = Vector2(750, 115)
+layout_size = Vector2(3481, 23)
 is_configured = true
 
 [node name="ReferenceRect - Border" type="ReferenceRect" parent="GGVBox - Text Area/GGMarginLayout - Outer"]

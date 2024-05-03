@@ -1,0 +1,263 @@
+[gd_scene load_steps=14 format=3 uid="uid://c5ejbfyogcveh"]
+
+[ext_resource type="Script" path="res://addons/GameGUI/GGInitialWindowSize.gd" id="1_hatkx"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGHBox.gd" id="2_6ffmt"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGNinePatchRect.gd" id="3_1dcq6"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGButton.gd" id="3_5w3sf"]
+[ext_resource type="Texture2D" uid="uid://cukrix1agpwpd" path="res://Base Bg 1.png" id="4_82dl1"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGMarginLayout.gd" id="4_xao7o"]
+[ext_resource type="Texture2D" uid="uid://ch7ap3vbu2gga" path="res://Background2.png" id="5_e0rth"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGTextureRect.gd" id="6_1e6ml"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGLimitedSizeComponent.gd" id="8_ndt4u"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGVBox.gd" id="9_334t2"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGOverlay.gd" id="11_2m67r"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGRichTextLabel.gd" id="11_v3u4d"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGLabel.gd" id="12_aqn8w"]
+
+[node name="TestWindow" type="Container"]
+offset_right = 1024.0
+offset_bottom = 600.0
+script = ExtResource("1_hatkx")
+initial_window_size = Vector2(1024, 600)
+layout_size = Vector2(1024, 600)
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGMarginLayout" type="Container" parent="."]
+layout_mode = 2
+script = ExtResource("4_xao7o")
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGTextureRect" type="TextureRect" parent="GGMarginLayout/GGNinePatchRect"]
+layout_mode = 2
+texture = ExtResource("5_e0rth")
+expand_mode = 1
+script = ExtResource("6_1e6ml")
+horizontal_mode = 1
+vertical_mode = 1
+layout_size = Vector2(1680, 840)
+is_configured = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout"]
+layout_mode = 2
+border_width = 6.0
+editor_only = false
+
+[node name="GGHBox" type="Container" parent="GGMarginLayout"]
+layout_mode = 2
+script = ExtResource("2_6ffmt")
+
+[node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox"]
+layout_mode = 2
+script = ExtResource("8_ndt4u")
+
+[node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent"]
+layout_mode = 2
+script = ExtResource("9_334t2")
+
+[node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox"]
+layout_mode = 2
+script = ExtResource("2_6ffmt")
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox"]
+layout_mode = 2
+script = ExtResource("9_334t2")
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox/GGNinePatchRect"]
+layout_mode = 2
+bbcode_enabled = true
+text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
+scroll_active = false
+script = ExtResource("11_v3u4d")
+layout_size = Vector2(510, 92)
+is_configured = true
+
+[node name="GGNinePatchRect2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox/GGNinePatchRect2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
+scroll_active = false
+script = ExtResource("11_v3u4d")
+layout_size = Vector2(510, 92)
+is_configured = true
+
+[node name="GGNinePatchRect3" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox/GGNinePatchRect3"]
+layout_mode = 2
+text = "HELLO WORLD"
+script = ExtResource("12_aqn8w")
+vertical_mode = 5
+layout_size = Vector2(0, 23)
+is_configured = true
+
+[node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]
+layout_mode = 2
+script = ExtResource("9_334t2")
+
+[node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("2_6ffmt")
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("8_ndt4u")
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout/GGHBox/GGVBox/GGLimitedSizeComponent"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGOverlay" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
+layout_mode = 2
+script = ExtResource("11_2m67r")
+
+[node name="GGNinePatchRect" type="Container" parent="GGMarginLayout/GGHBox/GGVBox/GGOverlay"]
+layout_mode = 2
+script = ExtResource("3_1dcq6")
+texture = ExtResource("4_82dl1")
+left = 5
+top = 5
+right = 5
+bottom = 5

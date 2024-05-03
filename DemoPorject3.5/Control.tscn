@@ -117,11 +117,11 @@ parameters = {
 "safe_area_right_margin": 0.0,
 "safe_area_top_margin": 0.0
 }
-content_alignment = 0
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
+margin_left = 36.0
 margin_top = 130.0
-margin_right = 110.0
+margin_right = 146.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -131,9 +131,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
-margin_left = 110.0
+margin_left = 146.0
 margin_top = 130.0
-margin_right = 220.0
+margin_right = 256.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -143,9 +143,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
-margin_left = 220.0
+margin_left = 256.0
 margin_top = 130.0
-margin_right = 330.0
+margin_right = 366.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -155,9 +155,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
-margin_left = 330.0
+margin_left = 366.0
 margin_top = 130.0
-margin_right = 440.0
+margin_right = 476.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
