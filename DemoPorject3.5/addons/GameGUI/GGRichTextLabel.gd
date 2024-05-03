@@ -25,10 +25,14 @@ func _set_text_size_mode(value):
 				reference_font_sizes[style_name] = 0
 
 		GGComponent.TextSizeMode.SCALE:
-			if reference_node: reference_node_height = floor(reference_node.size.y)
+			var ref_node: Control = _get_reference_node()
+			if ref_node:
+				reference_node_height = floor(ref_node.rect_size.y)
 			for style_name in reference_font_sizes.keys():
 				var style_size_name = style_name + "_font_size"
 				reference_font_sizes[style_name] = get_theme_font_size( style_size_name )
+			
+			printt(reference_node, ref_node)
 
 		GGComponent.TextSizeMode.PARAMETER:
 			reference_node_height = 0
@@ -50,19 +54,20 @@ func add_theme_font_size_override(name: String, size: int):
 	pass
 	
 ## A node that will be used as a height reference for scaling this node's text.
-export(NodePath) var reference_node = null setget _set_reference_node, _get_reference_node
+export(NodePath) var reference_node = null setget _set_reference_node
+	
 func _set_reference_node(value):
 	if reference_node == value: return
 	reference_node = value
-	var ref_node: Control = _get_reference_node()
+	var ref_node: Control = get_node(reference_node as NodePath)
 	if ref_node and reference_node_height == 0:
 		reference_node_height = int(ref_node.rect_size.y)
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null or reference_node.is_empty():
+	if reference_node == null:
 		return null
-	return get_node(reference_node) as Control
+	return get_node(reference_node as NodePath) as Control
 	
 
 ## The height of the [RichTextLabel] node that the [member reference_font_size] was designed for.
@@ -204,9 +209,10 @@ func _check_for_modified_font_size():
 				if _current_font_sizes[style_name] != reference_font_sizes[style_name]:
 					_current_font_sizes[style_name] = reference_font_sizes[style_name]
 					any_modified = true
-
-			if reference_node:
-				var h = int(reference_node.size.y)
+			
+			var ref_node: Control = _get_reference_node()
+			if ref_node:
+				var h = int(ref_node.rect_size.y)
 				if _current_node_height != h:
 					_current_node_height = h
 					any_modified = true
@@ -278,15 +284,18 @@ func _on_resolve_size( available_size:Vector2 ):
 
 			GGComponent.TextSizeMode.SCALE:
 				# Save current font reference size to check for editor changes
-				if reference_node: _current_node_height = int( reference_node.size.y )
+				var ref_node: Control = _get_reference_node()
+				if ref_node:
+					_current_node_height = int( ref_node.rect_size.y )
 
 				for style_name in reference_font_sizes.keys():
 					_current_font_sizes[style_name] = reference_font_sizes[style_name]
 
 	match text_size_mode:
 		GGComponent.TextSizeMode.SCALE:
-			if reference_node and reference_node_height:
-				var cur_scale = floor(reference_node.size.y) / reference_node_height
+			var ref_node: Control = _get_reference_node()
+			if ref_node and reference_node_height:
+				var cur_scale = floor(ref_node.rect_size.y) / reference_node_height
 
 				# Override the size of each font
 				for style_name in reference_font_sizes.keys():

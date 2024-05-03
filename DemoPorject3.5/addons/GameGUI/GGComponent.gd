@@ -27,6 +27,9 @@ signal begin_layout
 ## This signal is only emitted by the top-level root of a GGComponent subtree.
 signal end_layout
 
+## Simulated godot4 signal
+signal child_order_changed
+
 #-------------------------------------------------------------------------------
 # ENUMS
 #-------------------------------------------------------------------------------
@@ -553,8 +556,6 @@ func _signal_disconnect(owner: Object, owner_signal: String, function: String):
 	if not owner.is_connected(owner_signal, self, function):
 		return
 	owner.disconnect(owner_signal, self, function)
-	
-signal child_order_changed
 	
 func move_child(child_node: Node, to_position: int):
 	.move_child(child_node, to_position)

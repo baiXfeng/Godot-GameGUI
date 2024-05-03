@@ -25,7 +25,8 @@ func _set_text_size_mode(value):
 			reference_node_height = 0
 			reference_font_size = 0
 		GGComponent.TextSizeMode.SCALE:
-			if reference_node: reference_node_height = int(reference_node.size.y)
+			var ref_node: Control = _get_reference_node()
+			if ref_node: reference_node_height = int(ref_node.rect_size.y)
 			reference_font_size = get_theme_font_size( "font_size" )
 		GGComponent.TextSizeMode.PARAMETER:
 			reference_node_height = 0
@@ -186,9 +187,10 @@ func _check_for_modified_font_size():
 			if _current_font_size != reference_font_size:
 				_current_font_size = reference_font_size
 				request_layout()
-
-			if reference_node:
-				var h = int(reference_node.size.y)
+			
+			var ref_node: Control = _get_reference_node()
+			if ref_node:
+				var h = int(ref_node.rect_size.y)
 				if _current_node_height != h:
 					_current_node_height = h
 					request_layout()
@@ -252,12 +254,15 @@ func _on_resolve_size( available_size:Vector2 ):
 			GGComponent.TextSizeMode.SCALE:
 				# Save current font reference size to check for editor changes
 				_current_font_size = reference_font_size
-				if reference_node: _current_node_height = int( reference_node.size.y )
+				var ref_node: Control = _get_reference_node()
+				if ref_node:
+					_current_node_height = int( ref_node.rect_size.y )
 
 	match text_size_mode:
 		GGComponent.TextSizeMode.SCALE:
-			if reference_node and reference_node_height:
-				var cur_scale = floor(reference_node.size.y) / reference_node_height
+			var ref_node: Control = _get_reference_node()
+			if ref_node and reference_node_height:
+				var cur_scale = floor(ref_node.rect_size.y) / reference_node_height
 
 				# Override the size of the font to dynamically size it
 				var cur_size = reference_font_size * cur_scale

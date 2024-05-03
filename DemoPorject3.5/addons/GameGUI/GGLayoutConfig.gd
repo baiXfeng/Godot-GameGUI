@@ -1,4 +1,4 @@
-@tool
+tool
 
 ## Extend this node and override [method _on_begin_layout] to set GameGUI parameters
 ## prior to each layout via [method set_parameter]. Ensure the extended node
@@ -9,12 +9,14 @@ extends Node2D
 func _enter_tree():
 	var top = get_top_level_component()
 	if top:
-		top.begin_layout.connect( _dispatch_on_begin_layout )
+		#top.begin_layout.connect( _dispatch_on_begin_layout )
+		top.connect("begin_layout", self, "_dispatch_on_begin_layout")
 
 func _exit_tree():
 	var top = get_top_level_component()
 	if top:
-		top._disconnect( top.begin_layout, _dispatch_on_begin_layout )
+		#top._disconnect( top.begin_layout, _dispatch_on_begin_layout )
+		top.disconnect("begin_layout", self, "_dispatch_on_begin_layout")
 
 func _dispatch_on_begin_layout():
 	var viewport = get_viewport()
@@ -22,7 +24,7 @@ func _dispatch_on_begin_layout():
 
 	var display_size = viewport.get_visible_rect().size
 	var top = get_top_level_component()
-	if Engine.is_editor_hint() and top: display_size = top.size
+	if Engine.is_editor_hint() and top: display_size = top.rect_size
 
 	_on_begin_layout( display_size )
 
@@ -34,7 +36,7 @@ func _on_begin_layout( display_size:Vector2 ):
 ## Returns the specified parameter's value if it exists in the [member parameters]
 ## of the [GGComponent] subtree this node is attached to. If it doesn't exist, returns
 ## [code]0[/code] or a specified default result.
-func get_parameter( parameter_name:String, default_result:Variant )->Variant:
+func get_parameter( parameter_name:String, default_result ):
 	var cur = get_parent()
 	while cur and not cur is GGComponent:
 		cur = cur.get_parent()
@@ -60,7 +62,7 @@ func has_parameter( parameter_name:String )->bool:
 
 ## Sets the named parameter's value in the top-level root of the [GGComponent]
 ## subtree this node is attached to.
-func set_parameter( parameter_name:String, value:Variant ):
+func set_parameter( parameter_name:String, value ):
 	var cur = get_parent()
 	while cur and not cur is GGComponent:
 		cur = cur.get_parent()

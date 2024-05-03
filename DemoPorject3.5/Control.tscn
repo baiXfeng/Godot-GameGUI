@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/GameGUI/GGLimitedSizeComponent.gd" type="Script" id=1]
 [ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
@@ -10,33 +10,34 @@
 [ext_resource path="res://Background2.png" type="Texture" id=8]
 [ext_resource path="res://addons/GameGUI/GGRichTextLabel.gd" type="Script" id=9]
 [ext_resource path="res://addons/GameGUI/GGLabel.gd" type="Script" id=10]
+[ext_resource path="res://addons/GameGUI/GGLayoutConfig.gd" type="Script" id=11]
 
 [node name="Control" type="Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 256.0
 script = ExtResource( 2 )
-layout_size = Vector2( 1, 1 )
 parameters = {
 "safe_area_bottom_margin": 0.0,
 "safe_area_left_margin": 0.0,
 "safe_area_right_margin": 0.0,
 "safe_area_top_margin": 0.0
 }
-initial_window_size = Vector2( 1024, 600 )
+initial_window_size = Vector2( 1280, 600 )
 
 [node name="GGMarginLayout" type="Container" parent="."]
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 600.0
 script = ExtResource( 5 )
 
 [node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout"]
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 600.0
 border_width = 6.0
 editor_only = false
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout"]
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 600.0
 script = ExtResource( 4 )
 parameters = {
@@ -47,18 +48,18 @@ parameters = {
 }
 
 [node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox"]
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 min_width = 1
 
 [node name="GGVBox2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent"]
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 300.0
 script = ExtResource( 4 )
 layout_size = Vector2( 0, 40 )
@@ -113,12 +114,12 @@ is_configured = true
 
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
 margin_top = 300.0
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
 
 [node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 0, 80 )
 bbcode_enabled = true
@@ -126,7 +127,7 @@ bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 scroll_active = false
 script = ExtResource( 9 )
-layout_size = Vector2( 512, 60 )
+layout_size = Vector2( 640, 45 )
 is_configured = true
 
 [node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGRichTextLabel"]
@@ -137,7 +138,7 @@ editor_only = false
 
 [node name="GGRichTextLabel2" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
 margin_top = 110.0
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 220.0
 rect_min_size = Vector2( 0, 80 )
 bbcode_enabled = true
@@ -145,7 +146,10 @@ bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 scroll_active = false
 script = ExtResource( 9 )
-layout_size = Vector2( 512, 60 )
+text_size_mode = 1
+reference_node = NodePath("..")
+reference_node_height = 600
+layout_size = Vector2( 640, 45 )
 is_configured = true
 
 [node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGRichTextLabel2"]
@@ -156,13 +160,15 @@ editor_only = false
 
 [node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
 margin_top = 220.0
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 0, 80 )
 text = "HELLO WORLD"
 align = 1
 valign = 1
 script = ExtResource( 10 )
+text_size_mode = 1
+reference_node_height = 600
 vertical_mode = 5
 layout_size = Vector2( 0, 14 )
 is_configured = true
@@ -174,20 +180,20 @@ border_width = 2.0
 editor_only = false
 
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]
-margin_left = 512.0
-margin_right = 1024.0
+margin_left = 640.0
+margin_right = 1280.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 300.0
 script = ExtResource( 4 )
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
-margin_left = 36.0
+margin_left = 100.0
 margin_top = 130.0
-margin_right = 146.0
+margin_right = 210.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -200,9 +206,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
-margin_left = 146.0
+margin_left = 210.0
 margin_top = 130.0
-margin_right = 256.0
+margin_right = 320.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -215,9 +221,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
-margin_left = 256.0
+margin_left = 320.0
 margin_top = 130.0
-margin_right = 366.0
+margin_right = 430.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -230,9 +236,9 @@ layout_size = Vector2( 110, 40 )
 is_configured = true
 
 [node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGVBox/GGHBox"]
-margin_left = 366.0
+margin_left = 430.0
 margin_top = 130.0
-margin_right = 476.0
+margin_right = 540.0
 margin_bottom = 170.0
 text = "Button"
 script = ExtResource( 3 )
@@ -246,15 +252,15 @@ is_configured = true
 
 [node name="GGLimitedSizeComponent" type="Container" parent="GGMarginLayout/GGHBox/GGVBox"]
 margin_top = 300.0
-margin_right = 512.0
+margin_right = 640.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 layout_size = Vector2( 1, 1 )
 
 [node name="GGTextureRect" type="TextureRect" parent="GGMarginLayout/GGHBox/GGVBox/GGLimitedSizeComponent"]
-margin_top = 22.0
-margin_right = 512.0
-margin_bottom = 278.0
+margin_left = 20.0
+margin_right = 620.0
+margin_bottom = 300.0
 texture = ExtResource( 8 )
 expand = true
 stretch_mode = 6
@@ -263,3 +269,6 @@ horizontal_mode = 1
 vertical_mode = 1
 layout_size = Vector2( 1680, 840 )
 is_configured = true
+
+[node name="GGLayoutConfig" type="Node2D" parent="GGMarginLayout/GGHBox/GGVBox"]
+script = ExtResource( 11 )
