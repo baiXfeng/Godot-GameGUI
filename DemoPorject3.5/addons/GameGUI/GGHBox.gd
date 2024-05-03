@@ -56,7 +56,7 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 		var has_mode = child is GGComponent or child.has_method("request_layout")
 		if has_mode and child.horizontal_mode in modes:
 			_resolve_child_size( child, available_size, limited )
-			var w = int(child.size.x)
+			var w = int(child.rect_size.x)
 			min_width += w
 			fixed_width += w
 			_min_widths[i] = w
@@ -95,7 +95,7 @@ func _resolve_child_sizes( available_size:Vector2, limited:bool=false ):
 			expand_count -= 1
 			remaining_total_stretch_ratio -= child.size_flags_stretch_ratio
 			_min_widths[i] = _max_widths[i]  # skip this node in the next pass
-			_resolve_child_size( child, child.size, limited )  # final resolve
+			_resolve_child_size( child, child.rect_size, limited )  # final resolve
 
 	excess_width = remaining_width
 	total_stretch_ratio = remaining_total_stretch_ratio
