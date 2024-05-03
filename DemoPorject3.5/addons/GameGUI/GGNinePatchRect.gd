@@ -1,70 +1,71 @@
-@tool
+tool
 
 class_name GGNinePatchRect
 extends GGComponent
 
-@export var texture:Texture2D :
-	set(value):
-		texture = value
-		if not texture: return
+export(Texture) var texture:Texture setget _set_texture
+func _set_texture(value):
+	texture = value
+	if not texture: return
+	_texture_region = Rect2( 0, 0, texture.get_width(), texture.get_height() )
+	_update_piece_rects()
 
-		_texture_region = Rect2( 0, 0, texture.get_width(), texture.get_height() )
+export(bool) var draw_center := true setget _set_draw_center
+func _set_draw_center(value):
+	draw_center = value
+	#queue_redraw()
+	update()
 
-		_update_piece_rects()
+#export_group("Patch Margin")
 
-@export var draw_center := true :
-	set(value):
-		draw_center = value
-		queue_redraw()
+export(int) var left := 0 setget _set_left
+func _set_left(value):
+	left = clamp( value, 0, _texture_region.size.x )
+	_update_piece_rects()
 
-@export_group("Patch Margin")
+export(int) var top := 0 setget _set_top
+func _set_top(value):
+	top = clamp( value, 0, _texture_region.size.y )
+	_update_piece_rects()
 
-@export var left   := 0:
-	set(value):
-		left = clamp( value, 0, _texture_region.size.x )
-		_update_piece_rects()
+export(int) var right := 0 setget _set_right
+func _set_right(value):
+	right = clamp( value, 0, _texture_region.size.x )
+	_update_piece_rects()
 
-@export var top    := 0:
-	set(value):
-		top = clamp( value, 0, _texture_region.size.y )
-		_update_piece_rects()
+export(int) var bottom := 0 setget _set_bottom
+func _set_bottom(value):
+	bottom = clamp( value, 0, _texture_region.size.y )
+	_update_piece_rects()
 
-@export var right  := 0:
-	set(value):
-		right = clamp( value, 0, _texture_region.size.x )
-		_update_piece_rects()
+#export_group("Fill Mode")
 
-@export var bottom := 0:
-	set(value):
-		bottom = clamp( value, 0, _texture_region.size.y )
-		_update_piece_rects()
+export(int, "STRETCH", "TILE", "TILE_FIT") var horizontal_fill := FillMode.STRETCH setget _set_horizontal_fill
+func _set_horizontal_fill(value):
+	horizontal_fill = value
+	#queue_redraw()
+	update()
 
-@export_group("Fill Mode")
-
-@export var horizontal_fill := FillMode.STRETCH :
-	set(value):
-		horizontal_fill = value
-		queue_redraw()
-
-@export var vertical_fill   := FillMode.STRETCH :
-	set(value):
-		vertical_fill = value
-		queue_redraw()
+export(int, "STRETCH", "TILE", "TILE_FIT") var vertical_fill := FillMode.STRETCH setget _set_vertical_fill
+func _set_vertical_fill(value):
+	vertical_fill = value
+	#queue_redraw()
+	update()
 
 var _texture_region:Rect2
-var _piece_rects:Array[Rect2] = []
+var _piece_rects:Array = []
 
 func _draw():
-	if size.x == 0 or size.y == 0 or not texture: return
+	if rect_size.x == 0 or rect_size.y == 0 or not texture: return
 
 	var _left = left
 	var _right = right
 	var _top = top
 	var _bottom = bottom
 
-	if left + right > size.x or top + bottom > size.y:
-		var scale_x = size.x / (_left + _right)
-		var scale_y = size.y / (_top + _bottom)
+	if left + right > rect_size.x or top + bottom > rect_size.y:
+		var scale_x = rect_size.x / (_left + _right)
+		var scale_y = rect_size.y / (_top + _bottom)
 		var scale = min( scale_x, scale_y )
 
 		_left = floor( _left * scale )
@@ -72,10 +73,10 @@ func _draw():
 		_top = floor( _top * scale )
 		_bottom = ceil( _bottom * scale )
 
-	var mid_w = max( size.x - (_left+_right), 0 )
-	var mid_h = max( size.y - (_top+_bottom), 0 )
+	var mid_w = max( rect_size.x - (_left+_right), 0 )
+	var mid_h = max( rect_size.y - (_top+_bottom), 0 )
 
-	var pos = position
+	var pos = rect_position
 	if _top > 0:
 		if _left > 0:   draw_texture_rect_region( texture, Rect2(pos,Vector2(_left,_top)), _piece_rects[0], modulate )
 		pos += Vector2( _left, 0 )
@@ -83,7 +84,7 @@ func _draw():
 		pos += Vector2( mid_w, 0 )
 		if _right > 0:  draw_texture_rect_region( texture, Rect2(pos,Vector2(_right,_top)), _piece_rects[2], modulate )
 
-	pos = Vector2( position.x, pos.y + _top )
+	pos = Vector2( rect_position.x, pos.y + _top )
 	if mid_h > 0:
 		fill_texture( texture, Rect2(pos,Vector2(_left,mid_h)), _piece_rects[3], horizontal_fill, vertical_fill, modulate )
 		pos += Vector2( _left, 0 )
@@ -91,7 +92,7 @@ func _draw():
 		pos += Vector2( mid_w, 0 )
 		fill_texture( texture, Rect2(pos,Vector2(_right,mid_h)), _piece_rects[5], horizontal_fill, vertical_fill, modulate )
 
-	pos = Vector2( position.x, pos.y + mid_h )
+	pos = Vector2( rect_position.x, pos.y + mid_h )
 	if _bottom > 0:
 		if _left > 0:   draw_texture_rect_region( texture, Rect2(pos,Vector2(_left,_bottom)), _piece_rects[6], modulate )
 		pos += Vector2( _left, 0 )
@@ -121,4 +122,5 @@ func _update_piece_rects():
 	_piece_rects.push_back( Rect2(      x+left, y+(h-bottom), mid_w, bottom) )  # B
 	_piece_rects.push_back( Rect2( x+(w-right), y+(h-bottom), right, bottom) )  # BR
 
-	queue_redraw()
+	#queue_redraw()
+	update()
