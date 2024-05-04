@@ -108,7 +108,7 @@ parameters = {
 
 [node name="GGHBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
 margin_right = 512.0
-margin_bottom = 300.0
+margin_bottom = 200.0
 script = ExtResource( 4 )
 layout_size = Vector2( 0, 40 )
 parameters = {
@@ -120,9 +120,9 @@ parameters = {
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
 margin_left = 36.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 146.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 horizontal_mode = 5
@@ -132,9 +132,9 @@ is_configured = true
 
 [node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
 margin_left = 146.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 256.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 horizontal_mode = 5
@@ -144,9 +144,9 @@ is_configured = true
 
 [node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
 margin_left = 256.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 366.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 horizontal_mode = 5
@@ -156,9 +156,9 @@ is_configured = true
 
 [node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox"]
 margin_left = 366.0
-margin_top = 130.0
+margin_top = 80.0
 margin_right = 476.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 horizontal_mode = 5
@@ -166,8 +166,80 @@ vertical_mode = 5
 layout_size = Vector2( 110, 40 )
 is_configured = true
 
+[node name="GGHBox2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
+margin_top = 200.0
+margin_right = 512.0
+margin_bottom = 400.0
+script = ExtResource( 4 )
+layout_size = Vector2( 0, 40 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2"]
+margin_top = 80.0
+margin_right = 110.0
+margin_bottom = 120.0
+text = "Button"
+script = ExtResource( 3 )
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2"]
+margin_left = 110.0
+margin_top = 80.0
+margin_right = 220.0
+margin_bottom = 120.0
+text = "Button"
+script = ExtResource( 3 )
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGButton4" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2"]
+margin_left = 220.0
+margin_top = 80.0
+margin_right = 330.0
+margin_bottom = 120.0
+text = "Button"
+script = ExtResource( 3 )
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2( 110, 40 )
+is_configured = true
+
+[node name="GGMarginLayout" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2"]
+margin_left = 330.0
+margin_right = 512.0
+margin_bottom = 200.0
+script = ExtResource( 5 )
+left_margin = 0.1
+top_margin = 0.1
+right_margin = 0.9
+bottom_margin = 0.9
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2/GGMarginLayout"]
+margin_left = 18.0
+margin_top = 20.0
+margin_right = 163.0
+margin_bottom = 180.0
+text = "Check"
+icon_align = 1
+script = ExtResource( 3 )
+text_size_mode = 1
+reference_node = NodePath("..")
+reference_node_height = 200
+reference_font_size = 14
+is_configured = true
+
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2"]
-margin_top = 300.0
+margin_top = 400.0
 margin_right = 512.0
 margin_bottom = 600.0
 script = ExtResource( 6 )
@@ -181,8 +253,9 @@ parameters = {
 
 [node name="GGNinePatchRect2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
 margin_right = 512.0
-margin_bottom = 100.0
+margin_bottom = 66.0
 script = ExtResource( 12 )
+layout_size = Vector2( 0, 300 )
 parameters = {
 "safe_area_bottom_margin": 0.0,
 "safe_area_left_margin": 0.0,
@@ -196,25 +269,48 @@ right = 5
 bottom = 5
 
 [node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect2"]
+margin_top = -7.0
 margin_right = 512.0
-margin_bottom = 100.0
+margin_bottom = 73.0
 rect_min_size = Vector2( 0, 80 )
 bbcode_enabled = true
 bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
-scroll_active = false
 script = ExtResource( 9 )
 layout_size = Vector2( 512, 60 )
 is_configured = true
 
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect2/GGRichTextLabel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-border_width = 2.0
-editor_only = false
-
 [node name="GGNinePatchRect4" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
-margin_top = 100.0
+margin_top = 66.0
+margin_right = 512.0
+margin_bottom = 132.0
+script = ExtResource( 12 )
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+texture = ExtResource( 11 )
+left = 5
+top = 5
+right = 5
+bottom = 5
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4"]
+margin_top = -7.0
+margin_right = 512.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 0, 80 )
+bbcode_enabled = true
+bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
+text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
+script = ExtResource( 9 )
+layout_size = Vector2( 512, 60 )
+is_configured = true
+
+[node name="GGNinePatchRect3" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
+margin_top = 132.0
 margin_right = 512.0
 margin_bottom = 200.0
 script = ExtResource( 12 )
@@ -230,45 +326,10 @@ top = 5
 right = 5
 bottom = 5
 
-[node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4"]
-margin_right = 512.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 80 )
-bbcode_enabled = true
-bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
-text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
-scroll_active = false
-script = ExtResource( 9 )
-layout_size = Vector2( 512, 60 )
-is_configured = true
-
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4/GGRichTextLabel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-border_width = 2.0
-editor_only = false
-
-[node name="GGNinePatchRect3" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
-margin_top = 200.0
-margin_right = 512.0
-margin_bottom = 300.0
-script = ExtResource( 12 )
-parameters = {
-"safe_area_bottom_margin": 0.0,
-"safe_area_left_margin": 0.0,
-"safe_area_right_margin": 0.0,
-"safe_area_top_margin": 0.0
-}
-texture = ExtResource( 11 )
-left = 5
-top = 5
-right = 5
-bottom = 5
-
 [node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect3"]
-margin_top = 10.0
+margin_top = -6.0
 margin_right = 512.0
-margin_bottom = 90.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 0, 80 )
 text = "HELLO WORLD"
 align = 1
@@ -279,13 +340,6 @@ reference_node_height = 600
 vertical_mode = 5
 layout_size = Vector2( 0, 14 )
 is_configured = true
-
-[node name="ReferenceRect" type="ReferenceRect" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect3/GGLabel"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-border_width = 2.0
-editor_only = false
 
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]
 margin_left = 512.0
@@ -318,7 +372,6 @@ margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
-reference_node = NodePath(".")
 reference_node_height = 600
 horizontal_mode = 5
 vertical_mode = 5
@@ -333,7 +386,6 @@ margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
-reference_node = NodePath(".")
 reference_node_height = 600
 horizontal_mode = 5
 vertical_mode = 5
@@ -348,7 +400,6 @@ margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
-reference_node = NodePath(".")
 reference_node_height = 600
 horizontal_mode = 5
 vertical_mode = 5
@@ -363,7 +414,6 @@ margin_bottom = 120.0
 text = "Button"
 script = ExtResource( 3 )
 text_size_mode = 1
-reference_node = NodePath(".")
 reference_node_height = 600
 horizontal_mode = 5
 vertical_mode = 5

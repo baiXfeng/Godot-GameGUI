@@ -121,6 +121,69 @@ vertical_mode = 5
 layout_size = Vector2(110, 40)
 is_configured = true
 
+[node name="GGHBox2" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox"]
+layout_mode = 2
+script = ExtResource("2_6ffmt")
+content_alignment = 0
+parameters = {
+"safe_area_bottom_margin": 0.0,
+"safe_area_left_margin": 0.0,
+"safe_area_right_margin": 0.0,
+"safe_area_top_margin": 0.0
+}
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox2"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton2" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox2"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGButton3" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox2"]
+layout_mode = 2
+text = "Button"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_font_size = 16
+horizontal_mode = 5
+vertical_mode = 5
+layout_size = Vector2(110, 40)
+is_configured = true
+
+[node name="GGMarginLayout" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox2"]
+layout_mode = 2
+script = ExtResource("4_xao7o")
+left_margin = 0.2
+top_margin = 0.2
+right_margin = 0.8
+bottom_margin = 0.8
+
+[node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGHBox2/GGMarginLayout" node_paths=PackedStringArray("reference_node")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 88
+text = "Check"
+script = ExtResource("3_5w3sf")
+text_size_mode = 1
+reference_node = NodePath("..")
+reference_node_height = 36
+reference_font_size = 16
+is_configured = true
+
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox"]
 layout_mode = 2
 script = ExtResource("9_334t2")

@@ -37,10 +37,10 @@ func _set_text_size_mode(value):
 	request_layout()
 	
 func get_theme_font_size(name: String, theme_type: String = "") -> int:
-	return 0
+	return GGCommon.get_theme_font_size(self, name, theme_type)
 	
 func add_theme_font_size_override(name: String, size: int):
-	pass
+	GGCommon.add_theme_font_size_override(self, name, size)
 	
 ## A node that will be used as a height reference for scaling this node's text.
 export(NodePath) var reference_node setget _set_reference_node
@@ -55,9 +55,9 @@ func _set_reference_node(value):
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null or reference_node.is_empty():
+	if reference_node == null:
 		return null
-	return get_node(reference_node) as Control
+	return GGCommon.get_node(self, reference_node) as Control
 	
 ## The height of the [Button] node that the [member reference_font_size] was designed for.
 ## This is used to scale the font based on the current height of the reference node.

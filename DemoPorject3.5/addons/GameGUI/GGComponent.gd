@@ -131,9 +131,9 @@ func _set_reference_node(value):
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null or reference_node.is_empty():
+	if reference_node == null:
 		return null
-	return get_node(reference_node) as Control
+	return GGCommon.get_node(self, reference_node) as Control
 	
 ## The name of the parameter to use for the [b]Parameter[/b] horizontal scaling mode.
 export(String) var width_parameter := "" setget _set_width_parameter
