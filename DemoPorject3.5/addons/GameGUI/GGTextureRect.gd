@@ -61,16 +61,16 @@ func _set_layout_size(value):
 ## mode. The reference node must be in a subtree higher in the scene tree than
 ## this node. Often the size reference is an invisible root-level square-aspect
 ## component; this allows same-size horizontal and vertical proportional spacers.
-export(NodePath) var reference_node = null setget _set_reference_node, _get_reference_node
+export(NodePath) var reference_node = null setget _set_reference_node
 func _set_reference_node(value):
 	if reference_node != value:
 		reference_node = value
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null or reference_node.is_empty():
+	if reference_node == null:
 		return null
-	return get_node(reference_node) as Control
+	return GGCommon.get_node(self, reference_node) as Control
 
 ## The name of the parameter to use for the [b]Parameter[/b] horizontal scaling mode.
 export(String) var width_parameter := "" setget _set_width_parameter

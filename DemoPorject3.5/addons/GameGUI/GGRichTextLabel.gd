@@ -31,8 +31,6 @@ func _set_text_size_mode(value):
 			for style_name in reference_font_sizes.keys():
 				var style_size_name = style_name + "_font_size"
 				reference_font_sizes[style_name] = get_theme_font_size( style_size_name )
-			
-			printt(reference_node, ref_node)
 
 		GGComponent.TextSizeMode.PARAMETER:
 			reference_node_height = 0
@@ -59,7 +57,7 @@ export(NodePath) var reference_node = null setget _set_reference_node
 func _set_reference_node(value):
 	if reference_node == value: return
 	reference_node = value
-	var ref_node: Control = get_node(reference_node as NodePath)
+	var ref_node: Control = _get_reference_node()
 	if ref_node and reference_node_height == 0:
 		reference_node_height = int(ref_node.rect_size.y)
 		request_layout()
@@ -67,7 +65,7 @@ func _set_reference_node(value):
 func _get_reference_node() -> Control:
 	if reference_node == null:
 		return null
-	return get_node(reference_node as NodePath) as Control
+	return GGCommon.get_node(self, reference_node) as Control
 	
 
 ## The height of the [RichTextLabel] node that the [member reference_font_size] was designed for.

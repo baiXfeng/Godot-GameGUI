@@ -41,7 +41,7 @@ func add_theme_font_size_override(name: String, size: int):
 	GGCommon.add_theme_font_size_override(self, name, size)
 	
 ## A node that will be used as a height reference for scaling this node's text.
-export(NodePath) var reference_node = null setget _set_reference_node, _get_reference_node
+export(NodePath) var reference_node = null setget _set_reference_node
 func _set_reference_node(value):
 	if reference_node == value: return
 	reference_node = value
@@ -51,9 +51,9 @@ func _set_reference_node(value):
 		request_layout()
 	
 func _get_reference_node() -> Control:
-	if reference_node == null or reference_node.is_empty():
+	if reference_node == null:
 		return null
-	return get_node(reference_node) as Control
+	return GGCommon.get_node(self, reference_node) as Control
 	
 
 ## The height of the [Label] node that the [member reference_font_size] was designed for.

@@ -124,7 +124,7 @@ func _set_layout_size(value):
 ## mode. The reference node must be in a subtree higher in the scene tree than
 ## this node. Often the size reference is an invisible root-level square-aspect
 ## component; this allows same-size horizontal and vertical proportional spacers.
-export(NodePath) var reference_node = null setget _set_reference_node, _get_reference_node
+export(NodePath) var reference_node = null setget _set_reference_node
 func _set_reference_node(value):
 	if reference_node != value:
 		reference_node = value
