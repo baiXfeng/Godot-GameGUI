@@ -29,5 +29,10 @@ static func get_theme_font_size(owner: Control, name: String, theme_type: String
 static func add_theme_font_size_override(owner: Control, name: String, size: int):
 	if owner == null:
 		return
-	
+	var font: Font = owner.get_font("font")
+	if font == null:
+		return
+	if not font is DynamicFont:
+		return
+	font.size = size
 	
