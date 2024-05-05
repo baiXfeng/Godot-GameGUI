@@ -233,12 +233,19 @@ top = 5
 right = 5
 bottom = 5
 
-[node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox/GGNinePatchRect3"]
+[node name="GGLabel" type="Label" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox/GGVBox/GGNinePatchRect3" node_paths=PackedStringArray("reference_node")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 27
 text = "HELLO WORLD"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("12_aqn8w")
+text_size_mode = 1
+reference_node = NodePath("..")
+reference_node_height = 40
+reference_font_size = 16
 vertical_mode = 5
-layout_size = Vector2(0, 23)
+layout_size = Vector2(0, 37)
 is_configured = true
 
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]

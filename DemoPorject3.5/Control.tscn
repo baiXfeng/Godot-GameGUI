@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/GameGUI/GGLimitedSizeComponent.gd" type="Script" id=1]
 [ext_resource path="res://addons/GameGUI/GGInitialWindowSize.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://addons/GameGUI/GGNinePatchRect.gd" type="Script" id=12]
 [ext_resource path="res://addons/GameGUI/GGOverlay.gd" type="Script" id=13]
 [ext_resource path="res://fonts/test_font.res" type="DynamicFont" id=14]
+[ext_resource path="res://fonts/test_font_rich.res" type="DynamicFont" id=15]
 
 [node name="Control" type="Container"]
 anchor_right = 1.0
@@ -226,9 +227,9 @@ right_margin = 0.9
 bottom_margin = 0.9
 
 [node name="GGButton" type="Button" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGHBox2/GGMarginLayout"]
-margin_left = -26.0
+margin_left = 18.0
 margin_top = 20.0
-margin_right = 206.0
+margin_right = 163.0
 margin_bottom = 180.0
 custom_fonts/font = ExtResource( 14 )
 text = "Check"
@@ -236,7 +237,7 @@ icon_align = 1
 script = ExtResource( 3 )
 text_size_mode = 1
 reference_node = NodePath("..")
-reference_node_height = 36
+reference_node_height = 100
 reference_font_size = 16
 is_configured = true
 
@@ -271,15 +272,22 @@ right = 5
 bottom = 5
 
 [node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect2"]
-margin_top = -7.0
 margin_right = 512.0
-margin_bottom = 73.0
-rect_min_size = Vector2( 0, 80 )
+margin_bottom = 66.0
+custom_fonts/normal_font = ExtResource( 15 )
 bbcode_enabled = true
 bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 script = ExtResource( 9 )
-layout_size = Vector2( 512, 60 )
+text_size_mode = 1
+reference_font_sizes = {
+"bold": 0,
+"bold_italics": 0,
+"italics": 0,
+"mono": 0,
+"normal": 18
+}
+layout_size = Vector2( 512, 217 )
 is_configured = true
 
 [node name="GGNinePatchRect4" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
@@ -300,15 +308,31 @@ right = 5
 bottom = 5
 
 [node name="GGRichTextLabel" type="RichTextLabel" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox/GGNinePatchRect4"]
-margin_top = -7.0
 margin_right = 512.0
-margin_bottom = 73.0
-rect_min_size = Vector2( 0, 80 )
+margin_bottom = 66.0
+custom_fonts/normal_font = ExtResource( 15 )
 bbcode_enabled = true
 bbcode_text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 text = "41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg41341asfgsg435214twg"
 script = ExtResource( 9 )
-layout_size = Vector2( 512, 60 )
+text_size_mode = 1
+reference_node = NodePath("..")
+reference_node_height = 40
+reference_font_sizes = {
+"bold": 16,
+"bold_italics": 16,
+"italics": 16,
+"mono": 16,
+"normal": 16
+}
+text_size_parameters = {
+"bold": "30",
+"bold_italics": "30",
+"italics": "30",
+"mono": "30",
+"normal": "30"
+}
+layout_size = Vector2( 512, 168 )
 is_configured = true
 
 [node name="GGNinePatchRect3" type="Container" parent="GGMarginLayout/GGHBox/GGLimitedSizeComponent/GGVBox2/GGVBox"]
@@ -333,14 +357,17 @@ margin_top = -6.0
 margin_right = 512.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 0, 80 )
+custom_fonts/font = ExtResource( 14 )
 text = "HELLO WORLD"
 align = 1
 valign = 1
 script = ExtResource( 10 )
 text_size_mode = 1
-reference_node_height = 600
+reference_node = NodePath(".")
+reference_node_height = 40
+reference_font_size = 18
 vertical_mode = 5
-layout_size = Vector2( 0, 14 )
+layout_size = Vector2( 0, 32 )
 is_configured = true
 
 [node name="GGVBox" type="Container" parent="GGMarginLayout/GGHBox"]

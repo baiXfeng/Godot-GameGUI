@@ -46,10 +46,21 @@ func _set_text_size_mode(value):
 						add_theme_font_size_override( style_size_name, cur_size )
 	
 func get_theme_font_size(name: String, theme_type: String = "") -> int:
-	return GGCommon.get_theme_font_size(self, name, theme_type)
+	var pos = name.find("_size")
+	var theme_name: String = name.substr(0, pos)
+	var font: Font = get_font(theme_name)
+	if font == null:
+		return 0
+	return font.get_height() as int
 	
 func add_theme_font_size_override(name: String, size: int):
-	GGCommon.add_theme_font_size_override(self, name, size)
+	var pos = name.find("_size")
+	var theme_name: String = name.substr(0, pos)
+	var font: Font = get_font(theme_name)
+	if font == null:
+		return
+	if font is DynamicFont:
+		font.size = size
 	
 ## A node that will be used as a height reference for scaling this node's text.
 export(NodePath) var reference_node = null setget _set_reference_node
